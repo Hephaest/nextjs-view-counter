@@ -8,7 +8,7 @@
 
 <div align="center">
 
-[English]((README.md)) | 中文
+[English](README.md) | 中文
 
 基于 Firebase 数据库和 Next.js 框架的 GitHub Profile 的访问量统计图标.
 

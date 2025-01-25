@@ -9,13 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "axios": "^0.21.1",
-    "next": "11.0.0",
-    "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "next": "15.1.6",
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
   },
   "devDependencies": {
-    "eslint": "7.28.0",
-    "eslint-config-next": "11.0.0"
+    "eslint": "9.19.0",
+    "eslint-config-next": "15.1.6"
+  },
+  "engines": {
+    "node": "22.x"
   }
 }

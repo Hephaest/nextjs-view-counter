@@ -12,7 +12,7 @@ English | [中文](README_CN.md)
 
 A simple Github profile view counter made by Firebase and Next.js.
 
-[![CI status][github-action-image]][github-action-url] [![david deps][david-image]][david-url] [![david devDeps][david-dev-image]][david-dev-url]
+[![CI status][github-action-image]][github-action-url]
 
 [github-action-image]: https://img.shields.io/github/workflow/status/Hephaest/nextjs-view-counter/View%20Counter%20CI/main
 [github-action-url]: https://github.com/Hephaest/nextjs-view-counter/actions?query=View%20Counter%20CI

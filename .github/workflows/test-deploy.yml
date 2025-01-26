@@ -5,31 +5,30 @@ name: View Counter CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 env:
   FIRE_BASE_URL: ${{ secrets.FIRE_BASE_URL }}
+  SHIELDS_IO_URL: ${{ secrets.SHIELDS_IO_URL }}
 
 jobs:
   lint-check:
-
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [15.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+        node-version: [22.x]
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: npm ci
-    - run: npm run lint
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm ci
+      - run: npm run lint
 
   build-check:
     needs: lint-check
@@ -37,22 +36,21 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x, 16.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+        node-version: [22.x]
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: npm ci
-    - run: npm run build
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm ci
+      - run: npm run build
 
   vercel-deploy:
     needs: build-check
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - run: curl -X POST https://api.vercel.com/v1/integrations/deploy/${{ secrets.VERCEL_TOKEN }}?buildCache=false
+      - uses: actions/checkout@v2
+      - run: curl -X POST https://api.vercel.com/v1/integrations/deploy/${{ secrets.VERCEL_TOKEN }}?buildCache=false

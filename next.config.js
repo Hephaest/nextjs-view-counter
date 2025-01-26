@@ -1,22 +1,30 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ['img.shields.io']
+    dangerouslyAllowSVG: true,
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "img.shields.io",
+        port: "",
+        pathname: "/static/**",
+      },
+    ],
   },
   serverRuntimeConfig: {
-    PROJECT_ROOT: __dirname
+    PROJECT_ROOT: __dirname,
   },
   async headers() {
     return [
-      { 
-        source: '/:path*',
+      {
+        source: "/:path*",
         headers: [
           {
-            key: 'cache-control',
-            value: 'max-age=0, no-cache, no-store, must-revalidate',
+            key: "cache-control",
+            value: "max-age=0, no-cache, no-store, must-revalidate",
           },
         ],
       },
-    ]
+    ];
   },
-}
+};

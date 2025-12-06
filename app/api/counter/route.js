@@ -5,37 +5,27 @@ export async function GET() {
   const response = await fetch(firebaseUrl);
   const jsonData = await response.json();
   const { counter } = jsonData;
+  const nextCounter = counter + 1;
 
   fetch(firebaseUrl, {
     method: "PUT",
-    body: JSON.stringify({ counter: counter + 1 }),
+    body: JSON.stringify({ counter: nextCounter }),
     headers: {
       "Content-Type": "application/json",
     },
   });
 
-  const imgResponse = await fetch(`${shieldsUrl}&message=${counter}`);
+  const imgResponse = await fetch(`${shieldsUrl}&message=${nextCounter}`);
 
   const imgData = await imgResponse.text();
 
   return new Response(imgData, {
     status: 200,
-    headers: { "content-type": "image/svg+xml" },
-  });
-}
-
-export async function PUT(request) {
-  const data = await request.json();
-  fetch(firebaseUrl, {
-    method: "PUT",
-    body: JSON.stringify(data),
     headers: {
-      "Content-Type": "application/json",
+      "content-type": "image/svg+xml",
+      "cache-control": "no-cache, no-store, must-revalidate",
+      "pragma": "no-cache",
+      "expires": "0",
     },
-  });
-
-  return new Response(JSON.stringify({ message: "success" }), {
-    status: 200,
-    headers: { "Content-Type": "application/json" },
   });
 }
